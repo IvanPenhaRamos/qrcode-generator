@@ -1,0 +1,13 @@
+[project]
+name = "qrcode-generator"
+version = "0.1.0"
+description = "Generador de códigos QR con interfaz gráfica"
+requires-python = ">=3.10"
+
+dependencies = [
+    "qrcode",
+    "platformdirs"
+]
+
+[project.scripts]
+qrcode-generator = "qrcode_generator.gui:run_gui"
