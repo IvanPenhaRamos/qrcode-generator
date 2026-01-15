@@ -2,7 +2,7 @@
 
 ## 1. Descripción
 
-Aplicación de escritorio desarrollada en Python para generar códigos QR a partir de URLs, con interfaz gráfica y soporte multiplataforma (Linux, Windows y macOS).
+Aplicación desarrollada en Python con la finalidad de generar códigos QR a partir de URLs. Disponible en **versión escritorio** con soporte multiplataforma (Linux, Windows y macOS) y **versión web**.
 
 Este proyecto nace de dos necesidades concretas:
 
@@ -20,37 +20,51 @@ Durante el desarrollo se han trabajado y reforzado los siguientes conceptos:
 
 - Sustituir rutas basadas en `strings` por el uso del módulo `pathlib.Path`
 
-- Uso de **Tkinter** para crear una interfaz gráfica sencilla
+- Uso de **Tkinter** para crear una interfaz gráfica sencilla y una iniciación en **HTML** y **CSS**
 
 - Separación clara entre interfaz gráfica y lógica
 
 - Mejora del sistema de **importaciones** y ejecución mediante **entrypoints**
 
-## 2. Requisitos
+## 2. Arquitectura
+
+- **Domain**: lógica de validación y generación de QR (compartida)
+
+- **Desktop**: interfaz gráfica con Tkinter
+
+- **Web**: aplicación Flask con HTML y CSS
+
+- **Tests**: validación automática del dominio
+
+## 3. Versión de escritorio
+
+Genera los códigos y permite al usuario elegir dónde guardarlos.
+
+```bash
+python -m qrcode_generator.desktop.gui
+```
+## 4. Versión web (Flask)
+
+Interfaz web sencilla para validar una URL, mostrar una previsualización del QR y descargarlo.
+
+```bash
+flask --app qrcode_generator.web.app run
+```
+
+## 5. Test
+
+```bash
+pytest
+```
+## 6. 🐳 Docker (opcional)
+
+El proyecto incluye los archivos necesarios para ejecutarse en Docker (Dockerfile y docker-compose.yml).
+
+## 7. Requisitos
 
 - Python ≥ 3.10
 - pip
 - Uso de un entorno virtual (recomendado)
-
-## 3. Instalación
-
-Clona el repositorio y ejecuta los siguientes comandos desde la raíz del proyecto:
-
-```bash
-python -m venv .venv
-source .venv/bin/activate  # Linux / macOS
-pip install -e .
-```
-
-## 4. Ejecución
-
-Una vez instalado el proyecto, la aplicación puede ejecutarse mediante el comando:
-
-```bash
-qrcode-generator
-```
-
-Esto abrirá la interfaz gráfica del generador de códigos QR.
 
 ## Notas finales
 

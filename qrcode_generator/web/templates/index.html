@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>QR Code Generator</title>
+
+    <!-- Conexión con el CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>QR Code Generator</h1>
+
+        <form method="post">
+            <label for="url">Introduce la URL</label>
+            <input
+                type="text"
+                id="url"
+                name="url"
+                placeholder="https://github.com/IvanPenhaRamos"
+                required
+            >
+
+            <button type="submit">Validar URL</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if validated_url %}
+            <div class="result">
+                <p><strong>URL válida:</strong> {{ validated_url }}</p>
+
+                    <div class="preview">
+                        <img src="data:image/png;base64,{{ qr_preview }}" alt="QR Preview">
+                    </div>
+
+                <form method="post" action="/download">
+                    <input type="hidden" name="url" value="{{ validated_url }}">
+                    <button type="submit">Descargar QR</button>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+
+</body>
+</html>
